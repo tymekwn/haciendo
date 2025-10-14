@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1760447885722,
+    "dateCreated": "2025-10-14T13:18:05.722Z",
+    "dateComplete": "2025-10-14T13:19:30.921Z",
+    "title": "Finish project",
+    "description": "Complete the todo app",
+    "priority": 1
+  },
+  {
+    "id": 1760447895999,
+    "dateCreated": "2025-10-14T13:18:15.999Z",
+    "title": "Buy groceries",
+    "priority": 3
+  },
+  {
+    "id": 1760448283339,
+    "dateCreated": "2025-10-14T13:24:43.339Z",
+    "title": "Buy drinks",
+    "priority": 3
+  }
+]
