@@ -1,15 +1,50 @@
 import { useState, useEffect } from 'react';
+import { Task } from '../../server/src/Task';
 
 function App() {
-  const [message, setMessage] = useState('');
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/hello')
+    fetch('http://localhost:3001/api/tasks')
       .then(res => res.json())
-      .then(data => setMessage(data.message));
+      .then(data => {
+        const loadedTasks = data.map((item: any) => Task.fromJSON(item));
+        setTasks(loadedTasks);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching tasks:', error);
+        setLoading(false);
+      });
   }, []);
 
-  return <h1>{message || 'Loading...'}</h1>;
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  return (
+    <div>
+      <h1>Tasks ({tasks.length})</h1>
+      {tasks.length === 0 ? (
+        <p>No tasks yet</p>
+      ) : (
+        <ul>
+          {tasks.map(task => (
+            <li key={task.id}>
+              <strong>{task.title}</strong>
+              {task.description && <p>{task.description}</p>}
+              <small>
+                Priority: {task.priority} | 
+                Created: {task.dateCreated.toLocaleDateString()}
+                {task.dateComplete && ` | Completed: ${task.dateComplete.toLocaleDateString()}`}
+              </small>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
 export default App;
