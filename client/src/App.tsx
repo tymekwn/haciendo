@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Task } from '../../server/src/Task';
-
+import './App.css';
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,13 +29,12 @@ function App() {
       {tasks.length === 0 ? (
         <p>No tasks yet</p>
       ) : (
-        <ul>
+        <ul className="task-list">
           {tasks.map(task => (
-            <li key={task.id}>
+            <li key={task.id} className={`task-item priority-${task.priority.toString()}`}>
               <strong>{task.title}</strong>
               {task.description && <p>{task.description}</p>}
               <small>
-                Priority: {task.priority} | 
                 Created: {task.dateCreated.toLocaleDateString()}
                 {task.dateComplete && ` | Completed: ${task.dateComplete.toLocaleDateString()}`}
               </small>

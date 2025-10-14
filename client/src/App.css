@@ -40,3 +40,40 @@
 .read-the-docs {
   color: #888;
 }
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  border: 2px solid #999;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Priority colors */
+.priority-1 {
+  border-color: #e74c3c;
+  background-color: #e74c3c;
+}
+
+.priority-2 {
+  border-color: #f39c12;
+  background-color: #f39c12;
+}
+
+.priority-3 {
+  border-color: #27ae60;
+  background-color: #27ae60;
+}
+
+.task-item strong {
+  display: block;
+  font-size: 1.2rem; 
+  font-weight: 600;
+  margin-bottom: 6px;
+}
