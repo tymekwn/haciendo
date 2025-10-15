@@ -1,7 +1,7 @@
 name: Pre-commit Checks
 run-name: ${{ github.actor }} is committing to ${{ github.ref }}
 
-on: 
+on:
   push:
     branches:
       - '**'
@@ -10,23 +10,23 @@ on:
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      
+
       - name: Run pre-commit
         run: |
           pip install pre-commit
           pre-commit run --all-files
-      
+
       - if: ${{ job.status == 'success' }}
         run: echo "All pre-commit checks passed!"
-      
+
       - if: ${{ job.status == 'failure' }}
         run: echo "Pre-commit checks failed! Please run 'pre-commit run --all-files' locally."

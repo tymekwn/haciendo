@@ -53,7 +53,7 @@ function App() {
       if (response.ok) {
         setNewTask({ title: '', description: '', priority: 1 });
         setShowForm(false);
-        fetchTasks(); 
+        fetchTasks();
       } else {
         console.error('Failed to add task');
       }
