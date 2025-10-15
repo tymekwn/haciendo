@@ -57,7 +57,7 @@ app.get('/api/tasks', async (req, res) => {
 app.post('/api/tasks', async (req, res) => {
   try {
     const { title, priority, description } = req.body;
-    
+
     if (!title) {
       return res.status(400).json({ error: 'Title is required' });
     }
@@ -78,7 +78,7 @@ app.patch('/api/tasks/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const tasks = await loadTasks();
     const taskIndex = tasks.findIndex(t => t.id === id);
-    
+
     if (taskIndex === -1) {
       return res.status(404).json({ error: 'Task not found' });
     }
@@ -88,7 +88,7 @@ app.patch('/api/tasks/:id', async (req, res) => {
     if (req.body.complete === true) {
       task.complete();
     }
-    
+
     if (req.body.description !== undefined) {
       task.description = req.body.description;
     }
@@ -96,7 +96,7 @@ app.patch('/api/tasks/:id', async (req, res) => {
     if (req.body.priority !== undefined) {
       task.priority = req.body.priority;
     }
-    
+
     await writeTasks(tasks);
     res.json(task.toJSON());
   } catch (error) {
@@ -110,11 +110,11 @@ app.delete('/api/tasks/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const tasks = await loadTasks();
     const filteredTasks = tasks.filter(t => t.id !== id);
-    
+
     if (tasks.length === filteredTasks.length) {
       return res.status(404).json({ error: 'Task not found' });
     }
-    
+
     await writeTasks(filteredTasks);
     res.status(204).send();
   } catch (error) {
