@@ -30,13 +30,13 @@
 }
 
 .priority-1 {
-  border-color: #27ae60;
-  background-color: #27ae60;
+  border-color: #27ae69;
+  background-color: #27ae69;
 }
 
 .task-item strong {
   display: block;
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 6px;
 }
