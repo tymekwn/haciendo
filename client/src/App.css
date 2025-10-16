@@ -5,6 +5,17 @@
   text-align: center;
 }
 
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.column {
+  padding: 1rem;
+}
+
 .task-list {
   list-style: none;
   padding: 0;
@@ -93,15 +104,4 @@
 .priority-toggle button.active {
   background: #9200b3;
   color: white;
-}
-
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.column {
-  padding: 1rem;
 }
