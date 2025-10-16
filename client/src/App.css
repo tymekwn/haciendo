@@ -58,6 +58,11 @@
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   margin-bottom: 12px;
+
+}
+
+.add-btn {
+  margin-top: 25px;
 }
 
 .add-btn:hover, .submit-btn:hover {
