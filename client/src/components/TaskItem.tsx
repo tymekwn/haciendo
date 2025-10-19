@@ -3,9 +3,16 @@ import { Task } from '../../../server/src/Task';
 interface TaskItemProps {
   task: Task;
   isCompleted?: boolean;
+  onComplete?: (id: number, dateComplete: Date) => void;
 }
 
-function TaskItem({ task, isCompleted = false }: TaskItemProps) {
+function TaskItem({ task, isCompleted = false, onComplete }: TaskItemProps) {
+  const handleComplete = () => {
+    if (!isCompleted) {
+      onComplete?.(task.id, new Date());
+    }
+  }
+
   return (
     <li
       key={task.id}
@@ -19,7 +26,15 @@ function TaskItem({ task, isCompleted = false }: TaskItemProps) {
           : `Created: ${task.dateCreated.toLocaleDateString()}`
         }
       </small>
+        {!isCompleted && (
+          <button
+            onClick={handleComplete}
+            className='complete-button'
+          >
+          </button>
+      )}
     </li>
+
   );
 }
 

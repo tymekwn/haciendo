@@ -72,7 +72,7 @@ app.post('/api/tasks', async (req, res) => {
   }
 });
 
-// Update task dateComplete, priority, or description
+// Update task dateComplete
 app.patch('/api/tasks/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -89,16 +89,17 @@ app.patch('/api/tasks/:id', async (req, res) => {
       task.complete();
     }
 
-    if (req.body.description !== undefined) {
-      task.description = req.body.description;
-    }
+    // if (req.body.description !== undefined) {
+    //   task.description = req.body.description;
+    // }
 
-    if (req.body.priority !== undefined) {
-      task.priority = req.body.priority;
-    }
+    // if (req.body.priority !== undefined) {
+    //   task.priority = req.body.priority;
+    // }
 
     await writeTasks(tasks);
     res.json(task.toJSON());
+    console.log('Updated task:', task);
   } catch (error) {
     res.status(500).json({ error: 'Failed to update task' });
   }
@@ -125,6 +126,6 @@ app.delete('/api/tasks/:id', async (req, res) => {
 // Initialize and start server
 initializeDataFile().then(() => {
   app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:5173`);
   });
 });

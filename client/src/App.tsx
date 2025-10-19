@@ -27,6 +27,30 @@ function App() {
       });
   };
 
+  const handleTaskComplete = (id: number) => {
+    // Send completion to server
+    console.log('Completing task', id);
+    fetch(`http://localhost:3001/api/tasks/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ complete: true }),
+    })
+      .then(res => res.json())
+      .then(updatedTask => {
+        setTasks(prevTasks =>
+          prevTasks.map(task =>
+            task.id === updatedTask.id ? Task.fromJSON(updatedTask) : task
+          )
+        );
+      })
+      .catch(error => {
+        console.error('Error completing task:', error);
+      });
+    console.log(tasks)
+  };
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -46,7 +70,7 @@ function App() {
           ) : (
             <ul className="task-list">
               {activeTasks.map(task => (
-                <TaskItem key={task.id} task={task}/>
+                <TaskItem key={task.id} task={task} onComplete={handleTaskComplete}/>
               ))}
             </ul>
           )}
@@ -61,7 +85,7 @@ function App() {
           ) : (
             <ul className="task-list">
               {completedTasks.map(task => (
-                <TaskItem key={task.id} task={task} isCompleted/>
+                <TaskItem key={task.id} task={task} isCompleted />
               ))}
             </ul>
           )}
