@@ -29,8 +29,7 @@ function TaskItem({ task, isCompleted = false, onComplete }: TaskItemProps) {
         {!isCompleted && (
           <button
             onClick={handleComplete}
-            className="ml-3 flex items-center gap-1 p-1 text-green-600 hover:text-white hover:bg-green-600 rounded-full transition"
-            title="Mark as complete"
+            className='complete-button'
           >
           </button>
       )}
